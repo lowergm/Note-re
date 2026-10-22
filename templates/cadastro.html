@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta name="description" content="Tá precisando lembrar de algo? Crie notas e veja e reveja sempre que precisar no Note-re">
+    <title>Note-re - Cadrastar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    
+    <!-- Imports -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-stone-900">
+    <header class="border-2 fixed w-full bg-stone-900 shadow-xl rounded-xl">
+      <nav class="flex justify-between items-center">
+        <a href="{{ url_for('pages.home') }}"><i class="bi bi-text-paragraph" style="color: white; font-size: 2rem;">Note-re</i></a>
+        <!-- Login -->
+        <div class="flex justify-end">
+          <a class="text-white font-semibold mr-4" href="{{ url_for('pages.login') }}">Login</a>
+        </div>
+      </nav>
+    </header>
+    <main class="flex justify-center items-center h-screen flex-col ">
+      <span class="flex flex-col gap-y-11">
+        <i class="text-white font-semibold bi bi-person-circle" style="font-size: 5rem;"></i>
+      </span>
+      <p class="my-3 text-white">Cadastrar</p>
+      <form method="post" action="{{ url_for('users.new_user') }}">
+        <div class="flex-row">
+          <label class="text-white">Nome</label>
+          <input name="cadastronome" placeholder="Coloque seu nome de usuario" autocomplete="email" class="rounded-md text-white outline-white bg-stone-900 border-2 border-slate-600" required>
+        </div>
+        <div class="flex-row">
+          <label class="text-white">Senha</label>
+          <input type="password" name="cadastrosenha" placeholder="Coloque sua Senha" autocomplete="password" class="rounded-md text-white outline-white bg-stone-900 border-2 border-slate-600 my-3" required>
+        </div>
+        <span class="flex justify-center"><button type="submit" class="border-slate-600 bg-sky-700 rounded-md text-white">Cadastrar</button></span>
+      </form>
+      <span class="flex justify-center text-red-500">
+        {% with messages = get_flashed_messages(category_filter=["cadastro"]) %}
+          {% if messages %}
+            {% for message in messages %}
+              <strong>{{ message }}</strong>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </span>
+    </main>
+  </body>
+</html>
