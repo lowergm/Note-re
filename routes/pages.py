@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template
+from flask_login import login_required, current_user
 
 pages = Blueprint("pages", __name__)
 
@@ -13,3 +14,8 @@ def login():
 @pages.route("/cadastrar")
 def cadastrar():
     return render_template("cadastro.html")
+
+@pages.route("/notas")
+@login_required
+def notas():
+    return render_template("notas.html")

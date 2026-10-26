@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect, url_for, flash
 from database.database import Usuario
 from peewee import IntegrityError
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 import hashlib
 import os
 from extensions import lm
@@ -37,7 +37,7 @@ def new_user():
     except IntegrityError:
         flash("Este nome já está sendo usado", "cadastro")
         return redirect(url_for("pages.cadastrar"))
-    return redirect(url_for('notas'))
+    return redirect(url_for('pages.notas'))
 
 @users.route("/logaruser", methods=["POST"])
 def login_usuario():
@@ -53,6 +53,12 @@ def login_usuario():
     
     if senha == user.senha:
         login_user(user)
-        return redirect(url_for("notas"))
+        return redirect(url_for("pages.notas"))
     else:
         return redirect(url_for("pages.login"))
+
+@users.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("pages.login"))

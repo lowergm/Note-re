@@ -1,8 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask
 from database.database import db, Usuario, Nota
 from routes.pages import pages
 from routes.users import users
-from flask_login import login_required
+from routes.notas import notas
+import flask_login
 from extensions import lm
 from dotenv import load_dotenv
 import os
@@ -16,6 +17,7 @@ lm.init_app(app)
 lm.login_view = 'pages.login'
 app.register_blueprint(pages)
 app.register_blueprint(users)
+app.register_blueprint(notas)
 
 @app.before_request
 def before_request():
@@ -25,18 +27,6 @@ def before_request():
 def after_request(response):
     db.close()
     return response
-
-@app.route("/dashboard")
-def dashboard():
-    usuarios = Usuario.select()
-    return render_template("dashboard.html", usuarios=usuarios)
-
-@app.route("/notas")
-@login_required
-def notas():
-    return """
-    A tela principal vem aqui
-"""
 
 if __name__ == "__main__":
     db.connect()
