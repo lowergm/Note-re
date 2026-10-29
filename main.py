@@ -10,7 +10,7 @@ import os
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="templates/static")
 
 app.secret_key = os.getenv("SECRET_KEY")
 lm.init_app(app)

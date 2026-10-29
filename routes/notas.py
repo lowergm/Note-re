@@ -18,3 +18,16 @@ def nova_nota():
 def deletar_nota(id):
     Nota.delete().where((Nota.id==id) & (Nota.username==current_user)).execute()
     return redirect(url_for("pages.notas"))
+
+@notas.route("/editarnota/<int:id>", methods=["POST"])
+@login_required
+def editar_nota(id):
+    titulo = request.form.get("tituloCard")
+    conteudo = request.form.get("cardscontent")
+    
+    nota = Nota.get(Nota.id==id, Nota.username==current_user)
+    nota.titulo = titulo
+    nota.texto = conteudo
+    nota.save()
+    
+    return redirect(url_for("pages.notas"))

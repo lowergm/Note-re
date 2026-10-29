@@ -25,16 +25,28 @@
     <main class="pt-20 flex-1">
       <section class="grid p-4">
         {% for nota in current_user.notas %}
-          <div class="bg-stone-800 rounded-xl p-4 border-stone-600 border min-h-40 w-full mb-4">
-            <h1 class="text-white pb-2 border-b border-stone-600 text-3xl"><strong>{{ nota.titulo }}</strong></h1>
+          <form class="bg-stone-800 rounded-xl p-4 border-stone-600 border min-h-40 w-full mb-4" method="post" action="{{ url_for('notas.editar_nota', id=nota.id) }}">
+            <input class="bg-stone-800 text-white pb-2 border-b border-stone-600 text-xl focus:outline-none tituloCard" value="{{ nota.titulo }}" name="tituloCard" readonly />
             <h6 class="text-xs text-stone-400">Anotado em: {{ nota.criado_em.strftime('%d/%m/%Y às %H:%M') }}</h6>
-            <p class="text-stone-300">{{ nota.texto }}</p>
-            <div class="flex justify-end">
+            <textarea class="bg-stone-800 text-stone-300 whitespace-pre-wrap w-full overflow-hidden focus:outline-none cardscontent" name="cardscontent" readonly>{{ nota.texto }}</textarea>
+            <div class="flex justify-end gap-4 menuCard">
+              <button class="editarCard" type="button">
+                <i class="text-sky-700 bi bi-pen"></i>
+              </button>
               <a href="/excluirnota/{{nota.id}}">
                 <i class="text-red-600 bi bi-trash"></i>
               </a>
             </div>
-          </div>
+            <!-- Modo de edição -->
+            <div class="flex justify-end gap-4 hidden editarMenu">
+              <button type="submit">
+                <i class="text-sky-700 bi bi-check-lg"></i>
+              </button>
+              <button class="cancelarEditar" type="button">
+                <i class="text-red-600 bi bi-x-lg"></i>
+              </button>
+            </div>
+          </form>
         {% endfor %}
       </section>
     </main>
@@ -49,7 +61,7 @@
         </div>
         <div class="flex flex-col">
           <label class="text-white">Conteúdo</label>
-          <textarea name="notacontent" placeholder="Conteúdo da nota" class="rounded-md text-white outline-white bg-stone-900 border-2 border-slate-600 mb-3 h-32" required></textarea>
+          <textarea name="notacontent" id="notacontent" placeholder="Conteúdo da nota" class="rounded-md text-white outline-white bg-stone-900 border-2 border-slate-600 mb-3 min-h-32" required></textarea>
         </div>
         <span class="flex justify-end">
           <button type="button" class="border-slate-600 bg-red-500 rounded-md text-white w-20 mr-3" onclick="fecharModal()">
@@ -69,17 +81,6 @@
       </button>
     </footer>
     
-    <script>
-      const plus = document.getElementById("abrirmodal")
-      const modal = document.getElementById("novanota")
-      
-      function abrirModal() {
-          modal.showModal()
-      }
-      
-      function fecharModal() {
-          modal.close()
-      }
-    </script>
+    <script src="static/js/notas.js"></script>
   </body>
 </html>
