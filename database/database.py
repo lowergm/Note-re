@@ -1,8 +1,21 @@
-from peewee import SqliteDatabase, CharField, ForeignKeyField, Model, TextField, DateTimeField
+from peewee import MySQLDatabase, CharField, ForeignKeyField, Model, TextField, DateTimeField
 import datetime
 from flask_login import UserMixin
+from dotenv import load_dotenv
+import os
+import ssl
 
-db = SqliteDatabase("database.db")
+load_dotenv()
+ssl_context = ssl.create_default_context()
+
+db = MySQLDatabase(
+    os.getenv("DB_NAME"),
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT")),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    ssl=ssl_context
+)
 
 class Usuario(Model, UserMixin):
     username = CharField(unique=True)
