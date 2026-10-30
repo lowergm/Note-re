@@ -3,3 +3,4 @@ Flask-Login==0.6.3
 python-dotenv==1.2.4
 peewee==4.5.3
 PyMySQL==1.2.3
+gunicorn==23.0.0
