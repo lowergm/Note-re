@@ -17,7 +17,7 @@ O Note-re é um bloco de notas desenvolvido para ajudar você a registrar e orga
 - Python
 - Flask
 - Peewee ORM
-- SQLite
+- MariaDB
 - Flask-Login
 - Tailwind CSS
 - Bootstrap Icons
