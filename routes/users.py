@@ -47,7 +47,8 @@ def login_usuario():
     user = Usuario.get_or_none(Usuario.username==nome.lower())
     
     if user is None:
-        return "Usuario não encontrado"
+        flash("Usuario não encontrado", "login")
+        return redirect(url_for("pages.login"))
     
     senha, salt = hash(senha, bytes.fromhex(user.salt))
     

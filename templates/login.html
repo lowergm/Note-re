@@ -36,6 +36,15 @@
         </div>
         <span class="flex justify-center"><button type="submit" class="border-slate-600 bg-sky-700 rounded-md text-white">Login</button></span>
       </form>
+      <span class="flex justify-center text-red-500">
+        {% with messages = get_flashed_messages(category_filter=["login"]) %}
+          {% if messages %}
+            {% for message in messages %}
+              <strong>{{ message }}</strong>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </span>
     </main>
   </body>
 </html>
