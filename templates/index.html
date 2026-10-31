@@ -16,19 +16,55 @@
         <i class="bi bi-text-paragraph" style="color: white; font-size: 2rem;">Note-re</i>
         <!-- Cadrastar e fazer Login -->
         <div class="flex justify-end">
-          <a class="text-white font-semibold mr-4" href="{{ url_for('pages.login') }}">Login</a>
-          <a class="text-white font-semibold mr-4" href="{{ url_for('pages.cadastrar') }}">Cadastrar</a>
+          <a class="text-white font-semibold mr-4" href="{{ url_for('pages.login') }}">Entrar</a>
         </div>
       </nav>
     </header>
-    <main>
-      <section class="flex justify-center items-center h-screen flex-col gap-y-7">
-        <h1 class="text-white font-bold text-9xl m-0 -mb-10">Note-re</h1>
+    <main class="pt-20 flex-1">
+      <section class="flex justify-center w-center flex-col gap-y-4 m-4 mb-8 pb-8 border-b border-stone-600">
+        <h1 class="text-white font-bold text-4xl m-0">Suas ideias, sem complicação.</h1>
         
-        <p class="text-ms text-white">
-          O bloco de notas que anota o seu jeito de fazer!
+        <p class="text-xs text-stone-400">
+          Simples e eficiente, assim como as suas ideias podem ser.
+        </p>
+
+        <a href="{{ url_for('pages.cadastrar') }}" class="flex items-center justify-center bg-sky-600 rounded-lg w-full h-10 font-bold text-white text-lg">
+          Criar nova conta
+        </a>
+      </section>
+        
+      <section class="flex flex-col gap-y-4 m-4 pb-8 border-b border-stone-600">
+        <h1 class="text-white font-bold text-2xl m-0">Por que eu deveria usar o Note-re?</h1>
+        <h2 class="text-white font-bold m-0">Simples de usar.</h2>
+        <p class="text-white">Nada de interfaces complicadas ou dezenas de botões.</p>
+
+        <h2 class="text-white font-bold m-0">Organize suas ideias.</h2>
+        <p class="text-white">Registre seus pensamentos e encontre suas notas quando precisar.</p>
+
+        <h2 class="text-white font-bold m-0">Direto ao ponto.</h2>
+        <p class="text-white">Apenas o essencial para você fazer o que precisa.</p>
+
+      </section>
+      
+      <section class="flex flex-col gap-y-4 m-4 pb-8 border-b border-stone-600">
+        <h1 class="text-white font-bold text-2xl m-0">Por trás do Note-re.</h1>
+        <p class="text-white">
+          O Note-re nasceu após inúmeras reclamações sobre blocos de notas que pareciam mais aplicativos de apresentação. Nossa proposta é oferecer algo minimalista e simples. O Note-re é um aplicativo que quer te ajudar a relembrar, e não te ajudar a se confundir.
         </p>
       </section>
+
+      <section class="flex flex-col gap-y-4 m-4 mb-8 pb-8 border-b border-stone-600">
+        <h1 class="text-white font-bold text-4xl m-0">Suas ideias merecem um lugar.</h1>
+        
+        <p class="text-xs text-stone-400">
+          Crie sua conta e experimente o Note-re.
+        </p>
+
+        <a href="{{ url_for('pages.cadastrar') }}" class="flex items-center justify-center bg-sky-600 rounded-lg w-full h-10 font-bold text-white text-lg">
+          Criar minha conta →
+        </a>
+      </section>
+      
     </main>
   </body>
 </html>
